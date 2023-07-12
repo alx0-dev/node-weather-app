@@ -1,0 +1,30 @@
+html {
+    min-height: 100%;
+    background-color: #c399ff;
+    background-image: radial-gradient(
+            at 41% 23%,
+            hsla(5, 81%, 78%, 1) 0px,
+            transparent 50%
+        ),
+        radial-gradient(at 82% 99%, hsla(64, 73%, 78%, 1) 0px, transparent 50%),
+        radial-gradient(at 13% 27%, hsla(9, 78%, 71%, 1) 0px, transparent 50%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif;
+}
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.card {
+    width: 300px;
+    height: 400px;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+}
