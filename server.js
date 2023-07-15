@@ -17,35 +17,61 @@ app.get('/', (req, res) => {
 });
 
 app.post('/', (req, res) => {
-    console.log('body', req.body);
     const { city } = req.body;
     let url = `${BASE_URL}?q=${city}&units=metric&appid=${API_KEY}`;
 
-    // console.log('url ', url);
     request(url, (error, response, body) => {
         if (error) {
-            // res.send('Error');
-
             res.render('index', {
                 weather: null,
                 error: error,
             });
         } else {
-            const { weather, main } = JSON.parse(body);
-            if (weather === undefined) {
+            const parsedBody = JSON.parse(body);
+
+            if (parsedBody.cod !== 200) {
                 res.render('index', {
                     weather: null,
-                    error: 'Oops, something went wrong! 😲',
+                    error: `${parsedBody.message}. Please try again.`,
                 });
             } else {
-                res.render('index', {
-                    weather: weather[0],
-                    main: main,
-                    error: null,
-                });
+                const { weather, main, name, sys, wind, visibility } =
+                    parsedBody;
+                const { country } = sys;
+                const { temp, feels_like, temp_min, temp_max, humidity } = main;
+                const { speed } = wind;
+                const currentDate = new Date();
+                const options = {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                };
+
+                if (weather === undefined) {
+                    res.render('index', {
+                        weather: null,
+                        error: 'Oops, something went wrong! 😲',
+                    });
+                } else {
+                    res.render('index', {
+                        weather: weather[0],
+                        location: `${name}, ${country}`,
+                        date: currentDate.toLocaleDateString(
+                            undefined,
+                            options
+                        ),
+                        temperature: Math.round(temp),
+                        feelsLike: Math.round(feels_like),
+                        tempMin: Math.round(temp_min),
+                        tempMax: Math.round(temp_max),
+                        humidity: `${humidity}%`,
+                        wind: Math.round(speed),
+                        visibility: Math.round(visibility / 1000),
+                        error: null,
+                    });
+                }
             }
-            // res.send(`Success. Weather data: ${weather} main: ${main}`);
-            // const { temp, feels_like, humidity } = main;
         }
     });
 });

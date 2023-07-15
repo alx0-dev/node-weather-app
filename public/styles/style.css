@@ -1,18 +1,32 @@
 html {
     min-height: 100%;
-    background-color: #c399ff;
+    background-color: #21053d;
     background-image: radial-gradient(
-            at 41% 23%,
-            hsla(5, 81%, 78%, 1) 0px,
-            transparent 50%
+            at 25% 82%,
+            hsla(326, 89%, 54%, 1) 0,
+            hsla(326, 89%, 54%, 0) 50%
         ),
-        radial-gradient(at 82% 99%, hsla(64, 73%, 78%, 1) 0px, transparent 50%),
-        radial-gradient(at 13% 27%, hsla(9, 78%, 71%, 1) 0px, transparent 50%);
+        radial-gradient(
+            at 35% 28%,
+            hsla(245, 86%, 58%, 1) 0,
+            hsla(245, 86%, 58%, 0) 50%
+        ),
+        radial-gradient(
+            at 79% 44%,
+            hsla(269, 89%, 61%, 1) 0,
+            hsla(269, 89%, 61%, 0) 50%
+        ),
+        radial-gradient(
+            at 43% 63%,
+            hsla(202, 95%, 53%, 1) 0,
+            hsla(202, 95%, 53%, 0) 50%
+        );
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
     overflow: hidden;
-    font-family: 'Roboto', sans-serif;
+    color: rgba(255, 255, 255, 0.87);
+    font-family: 'Inter', sans-serif;
 }
 .container {
     display: flex;
@@ -23,8 +37,125 @@ html {
 
 .card {
     width: 300px;
-    height: 400px;
     padding: 40px;
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.sm-card {
+    height: 130px;
+}
+
+.sm-card-extend {
+    height: 160px;
+}
+
+.lg-card {
+    height: 400px;
+}
+
+.error::first-letter {
+    text-transform: uppercase;
+}
+
+input[type='text'] {
+    display: block;
+    height: 30px;
+    width: 90%;
+    padding: 10px;
+    border: white;
+    border-radius: 10px;
+    margin: 10px 0px;
+    font-size: 15px;
+}
+
+input[type='submit'] {
+    display: block;
+    padding: 10px;
+    width: 97%;
+    height: 40px;
+    margin: 10px 0px;
+    border: 0;
+    text-decoration: none;
     border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(30px);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+input[type='submit']:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.location {
+    font-size: 30px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.weather-icon {
+    text-align: center;
+}
+
+.main-fields {
+    padding: 5px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-temperature {
+    padding: 20px 0px;
+    font-size: 70px;
+    font-weight: bolder;
+}
+
+.main-fields-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.description {
+    margin-top: -20px;
+    text-transform: capitalize;
+}
+
+.main-fields-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.main-fields-right img {
+    margin-right: -20px;
+}
+
+.celcius::after {
+    content: '\00b0';
+}
+
+.weather-fields-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.weather-fields {
+    margin-top: 30px;
+    padding: 5px 0px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.weather-fields .value {
+    font-size: 35px;
 }

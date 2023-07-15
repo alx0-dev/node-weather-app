@@ -14,42 +14,93 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Roboto:wght@500&display=swap"
             rel="stylesheet"
         />
     </head>
     <body>
         <div class="container">
             <% if (weather === null) { %>
-            <div class="card">
-                <% if (error === null) { %>
-                <div>Welcome to the weather app 👋</div>
+            <div
+                class="card <%= error !== null ? 'sm-card-extend' : 'sm-card' %>"
+            >
+                <div class="title">Enter a city to find out the weather</div>
                 <form action="/" method="post">
                     <input
                         name="city"
                         type="text"
-                        placeholder="Enter a City"
+                        placeholder="City"
                         required
                     />
+                    <% if (error !== null) { %>
+                    <div class="error"><%= error %></div>
+                    <% } %>
                     <input type="submit" value="Get Weather" />
                 </form>
-                <% } else { %>
-                <div><%= error %></div>
-                <% } %>
             </div>
             <% } else { %>
-            <div class="card">
-                <h2>Today's weather is:</h2>
-                <h3><%= weather.main %></h3>
-                <label><%= weather.description %></label>
-                <h2>Temperature</h2>
-                <label><%= main.temp %></label>
-                <h2>Feels like</h2>
-                <label><%= main.feels_like %></label>
+            <div class="card lg-card">
+                <div class="location"><%= location %></div>
+                <div class="date"><%= date %></div>
+                <div class="main-fields">
+                    <div class="main-fields-left">
+                        <label class="main-temperature celcius"
+                            ><%= temperature %></label
+                        >
+                        <label class="description"
+                            ><%= weather.description %></label
+                        >
+                    </div>
+
+                    <div class="main-fields-right">
+                        <img
+                            src="https://openweathermap.org/img/wn/<%= weather.icon %>@2x.png"
+                        />
+                    </div>
+                </div>
+
+                <div class="weather-fields-container">
+                    <div class="weather-fields">
+                        <label class="weather-label">Feels like</label>
+                        <label class="celcius value"><%= feelsLike %></label>
+                    </div>
+
+                    <div class="weather-fields">
+                        <label class="weather-label">High</label>
+                        <label class="celcius value"><%= tempMin %></label>
+                    </div>
+
+                    <div class="weather-fields">
+                        <label class="weather-label">Low</label>
+                        <label class="celcius value"><%= tempMax %></label>
+                    </div>
+                </div>
+
+                <div class="weather-fields-container">
+                    <div class="weather-fields">
+                        <label class="weather-label">Humidity</label>
+                        <label class="value"><%= humidity %></label>
+                    </div>
+
+                    <div class="weather-fields">
+                        <label class="weather-label">Wind</label>
+                        <div>
+                            <span class="value"><%= wind %></span>
+                            <span>m/s</span>
+                        </div>
+                    </div>
+
+                    <div class="weather-fields">
+                        <label class="weather-label">Visibility</label>
+
+                        <div>
+                            <span class="value"><%= visibility %></span>
+                            <span>km</span>
+                        </div>
+                    </div>
+                </div>
             </div>
             <% } %>
         </div>
-
-        <!-- <script src="" async defer></script> -->
     </body>
 </html>
